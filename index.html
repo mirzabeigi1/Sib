@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حساب با سیب 🍎</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --berry:#B3124B;
+  --berry-d:#840D37;
+  --sun:#FFC94D;
+  --ink:#2B2033;
+}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Vazirmatn',Tahoma,'Segoe UI',sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% -10%, #FFE2C7 0%, transparent 45%),
+    radial-gradient(circle at 95% 0%, #FFD5E4 0%, transparent 40%),
+    radial-gradient(circle at 50% 110%, #CFF3EC 0%, transparent 55%),
+    #FFFBF7;
+  min-height:100vh;
+  padding:18px 14px 40px;
+  -webkit-tap-highlight-color:transparent;
+}
+.app{max-width:1000px;margin:0 auto}
+
+/* ---------- top ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.35rem;color:var(--berry-d)}
+.brand .logo{font-size:2rem;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15));animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
+.icon-btn{
+  border:none;background:#fff;width:48px;height:48px;border-radius:16px;font-size:1.3rem;cursor:pointer;
+  box-shadow:0 4px 0 #EFE1D8;transition:.15s;
+}
+.icon-btn:active{transform:translateY(3px);box-shadow:none}
+
+/* ---------- intro / author ---------- */
+.intro-card{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:16px;
+  padding:22px 24px 20px;
+  border:1px solid rgba(179,18,75,.10);
+  border-radius:26px;
+  background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(255,246,241,.96));
+  box-shadow:0 12px 30px rgba(150,90,60,.10);
+}
+.intro-card::before{
+  content:"";
+  position:absolute;
+  right:0;top:0;bottom:0;
+  width:6px;
+  background:linear-gradient(180deg,var(--berry),#FF9F43);
+}
+.intro-card h1{
+  margin:0 0 10px;
+  color:var(--berry-d);
+  font-size:1.22rem;
+  font-weight:800;
+}
+.intro-card p{
+  margin:7px 0;
+  color:#645360;
+  font-size:.96rem;
+  line-height:2;
+}
+.intro-card .purpose{
+  color:#8A3858;
+  font-weight:600;
+}
+.resume-open-btn{
+  width:100%;
+  max-width:440px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:16px auto 0;
+  padding:14px 18px;
+  border:0;
+  border-radius:17px;
+  background:linear-gradient(135deg,#C71855,var(--berry-d));
+  color:#fff;
+  font:800 1rem 'Vazirmatn',Tahoma,sans-serif;
+  box-shadow:0 6px 0 #5C0726,0 10px 22px rgba(132,13,55,.16);
+  cursor:pointer;
+  transition:transform .15s,box-shadow .15s,filter .15s;
+}
+.resume-open-btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.resume-open-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #5C0726}
+.resume-open-btn .resume-icon{font-size:1.3rem}
+
+/* ---------- resume modal ---------- */
+.resume-overlay{
+  position:fixed;
+  inset:0;
+  z-index:20000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(43,32,51,.58);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  overflow-y:auto;
+}
+.resume-overlay[hidden]{display:none}
+.resume-dialog{
+  position:relative;
+  width:min(100%,700px);
+  max-height:min(88vh,900px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:26px;
+  border:1px solid rgba(179,18,75,.12);
+  border-radius:26px;
+  background:linear-gradient(180deg,#FFFEFC,#FFF8F2);
+  box-shadow:0 24px 70px rgba(20,8,18,.30);
+  animation:resumeIn .22s ease-out;
+}
+@keyframes resumeIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.resume-close-btn{
+  position:sticky;
+  top:0;
+  float:left;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  margin:-10px -10px 0 0;
+  border:0;
+  border-radius:14px;
+  background:#F8E8EC;
+  color:var(--berry-d);
+  font-size:1.45rem;
+  cursor:pointer;
+}
+.resume-heading{padding:6px 0 16px;border-bottom:1px solid #F1DDE3;margin-bottom:16px}
+.resume-heading h2{margin:0 0 5px;color:var(--berry-d);font-size:1.55rem;font-weight:800}
+.resume-heading p{margin:0;color:#8A6676;font-weight:600;font-size:.95rem}
+.resume-section{margin:17px 0}
+.resume-section h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 8px;
+  color:var(--berry-d);
+  font-size:1.04rem;
+  font-weight:800;
+}
+.resume-section p{margin:0;color:#4F4350;line-height:2;font-size:.94rem}
+.resume-section ul{margin:0;padding:0 22px 0 0;color:#4F4350;line-height:2}
+.resume-section li{padding-right:2px;margin:2px 0}
+.resume-note{
+  margin-top:18px;
+  padding:12px 14px;
+  border:1px dashed #E9C5D2;
+  border-radius:15px;
+  background:#FFF0F4;
+  color:#765363;
+  font-size:.86rem;
+  line-height:1.9;
+}
+
+/* ---------- attention button ---------- */
+.attention-btn{
+  border:none;
+  background:linear-gradient(180deg,#FFF3C4,#FFD76A);
+  color:#765000;
+  min-width:48px;
+  height:48px;
+  padding:0 12px;
+  border-radius:16px;
+  font-family:inherit;
+  font-size:.9rem;
+  font-weight:800;
+  cursor:pointer;
+  white-space:nowrap;
+  box-shadow:0 4px 0 #E6B842;
+  transition:.15s;
+}
+.attention-btn:active{
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #E6B842;
+}
+.attention-content{
+  margin-top:16px;
+  padding:16px;
+  border:1px solid #F2DCA3;
+  border-radius:18px;
+  background:#FFFAE9;
+}
+.attention-content p{
+  margin:0 0 12px;
+  color:#665438;
+  font-size:.94rem;
+  line-height:2;
+}
+.attention-content ul{
+  margin:8px 0 14px;
+  padding-right:22px;
+  color:#665438;
+  line-height:2.1;
+}
+.attention-content li{margin-bottom:5px}
+.attention-footer{
+  padding-top:12px;
+  border-top:1px dashed #E6D09B;
+  color:#795B22;
+  font-size:.9rem;
+  line-height:2;
+  font-weight:600;
+}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.tab{
+  flex:1 1 120px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  border:none;background:#fff;color:#6b5c6a;font-family:inherit;font-weight:700;font-size:1.05rem;
+  padding:14px 10px;border-radius:18px;cursor:pointer;
+  box-shadow:0 5px 0 #EFE1D8;transition:.15s;
+}
+.tab span{font-size:1.1rem}
+.tab.active{background:linear-gradient(180deg,#C71855,var(--berry-d));color:#fff;box-shadow:0 5px 0 #5C0726}
+.tab:active{transform:translateY(4px);box-shadow:none}
+
+/* ---------- board ---------- */
+.board{
+  background:#fff;border-radius:30px;padding:18px;
+  box-shadow:0 18px 40px rgba(150,90,60,.13);
+}
+.equation{
+  text-align:center;font-size:2.4rem;font-weight:800;letter-spacing:2px;
+  color:var(--berry-d);padding:4px 0 6px;
+}
+.equation .op{color:#B6A6B2;margin:0 4px}
+.equation .res{display:inline-block;min-width:1.3em;transition:.2s}
+.equation.solved .res{
+  background:linear-gradient(180deg,#FFD75E,#FFB020);
+  color:#5a3400;border-radius:16px;padding:0 14px;
+  box-shadow:0 6px 0 #D98C00;
+  animation:popIn .5s cubic-bezier(.34,1.56,.64,1);
+}
+.hint{
+  text-align:center;font-weight:700;color:#6E5C6B;font-size:1rem;
+  min-height:1.7em;margin-bottom:12px;transition:.2s;
+}
+
+/* ---------- stage ---------- */
+.stage{
+  position:relative;
+  min-height:330px;
+  border-radius:24px;
+  background:linear-gradient(180deg,#F4FCF8,#E8F6F0);
+  border:3px dashed #C6EBE0;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 14px;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+.row{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:flex-end;width:100%}
+.group{display:flex;flex-direction:column;align-items:center;gap:10px;transition:opacity .3s,transform .3s}
+.cap{
+  font-size:.8rem;font-weight:700;color:#8B7B88;background:#fff;
+  padding:3px 12px;border-radius:99px;box-shadow:0 2px 6px rgba(0,0,0,.07);
+}
+
+.plate{
+  width:158px;min-height:126px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 30%,#fff 0%,#FFF4E6 55%,#FFE4C2 100%);
+  border:4px solid #fff;
+  box-shadow:inset 0 -10px 16px rgba(200,130,60,.16), 0 10px 18px rgba(160,110,60,.18);
+  display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;
+  padding:16px 14px;
+}
+.basket{
+  width:172px;min-height:140px;
+  border-radius:22px 22px 46% 46% / 22px 22px 32% 32%;
+  background:repeating-linear-gradient(45deg,#F0C48A,#F0C48A 9px,#E3AF6C 9px,#E3AF6C 18px);
+  border:4px solid #D89A52;
+  box-shadow:inset 0 -10px 18px rgba(120,70,20,.22), 0 10px 18px rgba(160,110,60,.18);
+  display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;
+  padding:16px 14px;
+}
+
+.apple{
+  font-size:26px;line-height:1;display:inline-block;user-select:none;
+  transition:font-size .3s ease, opacity .25s, transform .2s;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));
+}
+
+@keyframes popIn{
+  0%{transform:scale(0) rotate(-120deg);opacity:0}
+  65%{transform:scale(1.28) rotate(12deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+.pop-in{animation:popIn .45s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes countPop{0%{transform:scale(1)}45%{transform:scale(1.6) translateY(-8px)}100%{transform:scale(1)}}
+.counted{animation:countPop .34s ease}
+@keyframes eatenAnim{to{transform:scale(.1) rotate(220deg);opacity:0}}
+.eaten{animation:eatenAnim .34s ease forwards}
+
+/* crow */
+.crow{
+  position:absolute;top:0;left:0;width:64px;height:64px;
+  display:grid;place-items:center;z-index:5;pointer-events:none;
+  transform:translate(-150px,-130px);
+  transition:transform .45s cubic-bezier(.34,1.1,.5,1);
+  will-change:transform;
+}
+/* به‌جای ایموجی، از تصویر crow.png استفاده می‌کنیم تا ظاهر کلاغ در همه دستگاه‌ها یکسان باشد. */
+.crow-inner{
+  display:block;
+  width:85px;
+  height:85px;
+  object-fit:contain;
+  transform:translate(-20px, -13px);
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.25));
+}
+.crow-inner.gulp{animation:gulp .32s ease}
+@keyframes gulp{0%{transform:scale(1)}45%{transform:scale(1.35) rotate(-9deg)}100%{transform:scale(1)}}
+
+/* flying apple clone */
+.flyer{
+  position:fixed;z-index:9999;pointer-events:none;
+  display:grid;place-items:center;line-height:1;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.25));
+}
+.confetti{position:fixed;top:-6vh;z-index:10000;pointer-events:none;line-height:1}
+
+/* ---------- controls ---------- */
+.controls{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.stepper-box{
+  background:#FFF7F1;border:2px solid #FFE7D3;border-radius:20px;
+  padding:10px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:180px;
+}
+.stepper-label{font-size:.8rem;font-weight:700;color:#9A7E86;text-align:center}
+.stepper{display:flex;align-items:center;gap:12px}
+.step-btn{
+  width:44px;height:44px;border-radius:14px;border:none;cursor:pointer;
+  font-size:1.4rem;font-weight:800;font-family:inherit;
+  background:linear-gradient(180deg,#fff,#FFEEDD);color:var(--berry);
+  box-shadow:0 4px 0 #F0D7C2;transition:.12s;
+}
+.step-btn:active{transform:translateY(3px);box-shadow:none}
+.step-val{font-size:1.6rem;font-weight:800;min-width:54px;text-align:center;color:var(--berry-d)}
+
+/* ---------- actions ---------- */
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:inherit;font-weight:800;font-size:1.1rem;border:none;cursor:pointer;
+  padding:14px 32px;border-radius:20px;transition:.14s;
+}
+.btn.primary{background:linear-gradient(180deg,#FF9F43,#F2760C);color:#fff;box-shadow:0 6px 0 #C25C00}
+.btn.primary:active{transform:translateY(5px);box-shadow:0 1px 0 #C25C00}
+.btn.ghost{background:#fff;color:#8B7B88;box-shadow:0 6px 0 #EEE0D6}
+.btn.ghost:active{transform:translateY(5px);box-shadow:none}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+
+@media(max-width:560px){
+  body{padding:12px 10px 30px}
+  .intro-card{padding:19px 18px 18px;border-radius:22px}
+  .intro-card h1{font-size:1.1rem}
+  .intro-card p{font-size:.9rem}
+  .resume-open-btn{font-size:.92rem;padding:13px 12px}
+  .resume-dialog{padding:20px 17px;border-radius:21px;max-height:90vh}
+  .resume-heading h2{font-size:1.3rem}
+  .resume-section h3{font-size:1rem}
+  .resume-section p,.resume-section ul{font-size:.89rem}
+  .plate{width:118px;min-height:100px;padding:10px}
+  .basket{width:128px;min-height:110px;padding:10px}
+  .equation{font-size:1.75rem}
+  .stepper-box{min-width:148px;padding:8px 12px}
+  .stage{min-height:280px;padding:16px 10px}
+  .btn{padding:12px 22px;font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="topbar">
+    <div class="brand"><span class="logo">🍎</span><span>حساب با سیب</span></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="attention-btn" id="attentionOpenBtn" type="button"
+        aria-haspopup="dialog" aria-controls="attentionOverlay">⚠️ توجه</button>
+      <button class="icon-btn" id="soundBtn" title="صدا" aria-label="روشن یا خاموش کردن صدا">🔊</button>
+    </div>
+  </div>
+
+  <section class="intro-card" aria-labelledby="introTitle">
+    <h1 id="introTitle">یک تجربهٔ تعاملی برای یادگیری ریاضی 🍎</h1>
+    <p>این پروژه را امیرحسین میرزابیگی با هدف کمک به یادگیری آسان‌تر و جذاب‌تر ریاضیات برای دانش‌آموزان طراحی و پیاده‌سازی کرده است.</p>
+    <p class="purpose">این پروژه به‌صورت اختصاصی برای ارائه در کانون ارزیابی شایستگی معلمی طراحی شده است.</p>
+    <button class="resume-open-btn" id="resumeOpenBtn" type="button" aria-haspopup="dialog" aria-controls="resumeOverlay">
+      <span class="resume-icon">🎓</span>
+      <span>آشنایی بیشتر با طراح و مشاهدهٔ رزومه</span>
+    </button>
+  </section>
+
+  <nav class="tabs" aria-label="انتخاب عملیات ریاضی">
+    <button class="tab active" data-op="add"><span>➕</span>جمع</button>
+    <button class="tab" data-op="sub"><span>➖</span>تفریق</button>
+    <button class="tab" data-op="mul"><span>✖️</span>ضرب</button>
+    <button class="tab" data-op="div"><span>➗</span>تقسیم</button>
+  </nav>
+
+  <section class="board">
+    <div class="equation" id="equation"></div>
+    <div class="hint" id="hint"></div>
+    <div class="stage" id="stage"></div>
+    <div class="controls" id="controls"></div>
+    <div class="actions">
+      <button class="btn primary" id="calcBtn">محاسبه کن</button>
+      <button class="btn ghost" id="resetBtn">از نو</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- پنجرهٔ رزومه؛ با دکمهٔ بالا باز می‌شود و با ضربدر یا کلیک بیرون بسته می‌شود. -->
+<div class="resume-overlay" id="resumeOverlay" hidden>
+  <section class="resume-dialog" role="dialog" aria-modal="true" aria-labelledby="resumeTitle" tabindex="-1">
+    <button class="resume-close-btn" id="resumeCloseBtn" type="button" aria-label="بستن رزومه">×</button>
+    <header class="resume-heading">
+      <h2 id="resumeTitle">امیرحسین میرزابیگی 🍎</h2>
+      <p>علاقه‌مند به برنامه‌نویسی، فناوری و آموزش</p>
+    </header>
+
+    <section class="resume-section">
+      <h3>👋 دربارهٔ من</h3>
+      <p>به یادگیری و تجربه‌کردن علاقه دارم و تلاش می‌کنم ایده‌هایی را که به ذهنم می‌رسند، به پروژه‌های واقعی تبدیل کنم. یادگیری برنامه‌نویسی را به‌صورت خودآموز آغاز کرده‌ام و با تمرین و ساخت پروژه، در مسیر توسعهٔ مهارت‌هایم قدم برمی‌دارم.</p>
+    </section>
+
+    <section class="resume-section">
+      <h3>💻 مهارت‌ها</h3>
+      <ul>
+        <li>آشنایی مقدماتی با Python</li>
+        <li>آشنایی با HTML، CSS و JavaScript</li>
+        <li>آشنایی با ابزارهای هوش مصنوعی و استفاده از آن‌ها در یادگیری و توسعهٔ پروژه‌ها</li>
+      </ul>
+    </section>
+
+    <section class="resume-section">
+      <h3>🍎 دربارهٔ پروژهٔ «حساب با سیب»</h3>
+      <p>طراحی و پیاده‌سازی یک وب‌سایت آموزشی تعاملی برای آموزش مفاهیم جمع، تفریق، ضرب و تقسیم به دانش‌آموزان، با استفاده از سیب‌های تصویری و انیمیشن؛ با هدف ساده‌تر و جذاب‌تر کردن یادگیری ریاضیات.</p>
+    </section>
+
+    <section class="resume-section">
+      <h3>🌱 ویژگی‌های فردی</h3>
+      <ul>
+        <li>کنجکاو و علاقه‌مند به یادگیری موضوعات جدید</li>
+        <li>علاقه‌مند به خلاقیت و تبدیل ایده‌ها به عمل</li>
+        <li>پیگیر یادگیری عملی و بهبود پروژه‌ها</li>
+        <li>علاقه‌مند به استفاده از فناوری برای ساده‌تر کردن فرایند یادگیری</li>
+      </ul>
+    </section>
+
+    <section class="resume-section">
+      <h3>🎯 هدف من</h3>
+      <p>می‌خواهم دانش و مهارت‌هایم را در زمینهٔ برنامه‌نویسی و هوش مصنوعی افزایش دهم و از آموخته‌هایم برای ساخت ابزارهای آموزشی جذاب‌تر استفاده کنم. همچنین علاقه دارم مهارت‌هایم را در زمینهٔ آموزش و تعامل مؤثر با دانش‌آموزان گسترش دهم.</p>
+    </section>
+
+    <div class="resume-note">مهارت‌های فنی ذکرشده حاصل یادگیری خودآموز و تجربهٔ عملی من هستند و تاکنون گواهینامهٔ تخصصی مرتبط با آن‌ها دریافت نکرده‌ام.</div>
+  </section>
+</div>
+
+
+<!-- پنجره توضیحات نسخه آزمایشی -->
+<div class="resume-overlay" id="attentionOverlay" hidden>
+  <section class="resume-dialog" role="dialog" aria-modal="true"
+    aria-labelledby="attentionTitle" tabindex="-1">
+    <button class="resume-close-btn" id="attentionCloseBtn" type="button"
+      aria-label="بستن توضیحات">×</button>
+    <header class="resume-heading">
+      <h2 id="attentionTitle">⚠️ توضیحات نسخه آزمایشی</h2>
+      <p>درباره محدودیت‌های فعلی پروژه حساب با سیب 🍎</p>
+    </header>
+    <div class="attention-content">
+      <p>وب‌سایت «حساب با سیب» یک تجربه آموزشی تعاملی است که با هدف ساده‌تر و جذاب‌تر کردن یادگیری ریاضیات برای دانش‌آموزان طراحی و پیاده‌سازی شده است.</p>
+      <p>این پروژه در مدت‌زمانی حدود دو روز توسعه یافته و در حال حاضر، نسخه‌ای آزمایشی از ایده اولیه آن است. به همین دلیل، نسخه فعلی دارای محدودیت‌هایی در تعداد سیب‌ها و بشقاب‌هاست:</p>
+      <ul>
+        <li>🍎 <strong>جمع:</strong> حداکثر ۱۰ سیب در هر گروه قابل نمایش است.</li>
+        <li>🐦 <strong>تفریق:</strong> تعداد سیب‌های اولیه حداکثر ۱۰ عدد است.</li>
+        <li>✖️ <strong>ضرب:</strong> هر بشقاب حداکثر ۶ سیب و تعداد بشقاب‌ها حداکثر ۵ عدد است.</li>
+        <li>➗ <strong>تقسیم:</strong> تعداد سیب‌های اولیه حداکثر ۲۰ عدد و تعداد بشقاب‌ها حداکثر ۵ عدد است.</li>
+      </ul>
+      <div class="attention-footer">
+        این محدودیت‌ها مربوط به نسخه فعلی پروژه هستند. هدف از این نسخه، ارائه یک نمونه آموزشی تعاملی و نمایش ایده اولیه بوده است؛ توسعه و بهبود قابلیت‌های آن می‌تواند در مراحل بعدی ادامه یابد.
+        <br><br>از توجه شما به این تجربه آموزشی سپاسگزارم. 🌱
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ============================================================
+   ابزارهای پایه
+============================================================ */
+const stage      = document.getElementById('stage');
+const equationEl = document.getElementById('equation');
+const hintEl     = document.getElementById('hint');
+const controlsEl = document.getElementById('controls');
+const calcBtn    = document.getElementById('calcBtn');
+const resetBtn   = document.getElementById('resetBtn');
+const soundBtn   = document.getElementById('soundBtn');
+
+/* ---------- پنجرهٔ رزومه ---------- */
+const resumeOverlay = document.getElementById('resumeOverlay');
+const resumeDialog = resumeOverlay.querySelector('.resume-dialog');
+const resumeOpenBtn = document.getElementById('resumeOpenBtn');
+const resumeCloseBtn = document.getElementById('resumeCloseBtn');
+let previousFocus = null;
+
+function openResume(){
+  previousFocus = document.activeElement;
+  resumeOverlay.hidden = false;
+  document.body.style.overflow = 'hidden';
+  resumeCloseBtn.focus();
+}
+function closeResume(){
+  resumeOverlay.hidden = true;
+  document.body.style.overflow = '';
+  if(previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+}
+resumeOpenBtn.addEventListener('click', openResume);
+resumeCloseBtn.addEventListener('click', closeResume);
+resumeOverlay.addEventListener('click', event => {
+  if(event.target === resumeOverlay) closeResume();
+});
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape' && !resumeOverlay.hidden) closeResume();
+  if(event.key === 'Escape' && !attentionOverlay.hidden) closeAttention();
+  if(event.key === 'Tab' && !resumeOverlay.hidden){
+    const focusable = [...resumeDialog.querySelectorAll('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    if(!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if(event.shiftKey && document.activeElement === first){
+      event.preventDefault();
+      last.focus();
+    }else if(!event.shiftKey && document.activeElement === last){
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+/* ---------- پنجره توضیحات نسخه آزمایشی ---------- */
+const attentionOverlay = document.getElementById('attentionOverlay');
+const attentionOpenBtn = document.getElementById('attentionOpenBtn');
+const attentionCloseBtn = document.getElementById('attentionCloseBtn');
+let previousAttentionFocus = null;
+
+function openAttention(){
+  previousAttentionFocus = document.activeElement;
+  attentionOverlay.hidden = false;
+  document.body.style.overflow = 'hidden';
+  attentionCloseBtn.focus();
+}
+function closeAttention(){
+  attentionOverlay.hidden = true;
+  document.body.style.overflow = resumeOverlay.hidden ? '' : 'hidden';
+  if(previousAttentionFocus && typeof previousAttentionFocus.focus === 'function'){
+    previousAttentionFocus.focus();
+  }
+}
+attentionOpenBtn.addEventListener('click', openAttention);
+attentionCloseBtn.addEventListener('click', closeAttention);
+attentionOverlay.addEventListener('click', event => {
+  if(event.target === attentionOverlay) closeAttention();
+});
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+const FA_DIGITS = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+const fa = n => String(n).replace(/\d/g, d => FA_DIGITS[+d]);
+
+/* ============================================================
+   صدا (WebAudio – بدون فایل خارجی)
+============================================================ */
+let audioCtx = null;
+let soundOn = true;
+function beep(freq = 600, dur = 0.08, type = 'sine', vol = 0.14){
+  if(!soundOn) return;
+  try{
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = type;
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + dur);
+  }catch(e){}
+}
+function victorySound(){
+  [523,659,784,1047].forEach((f,i)=> setTimeout(()=>beep(f,0.16,'sine',0.11), i*110));
+}
+soundBtn.addEventListener('click', ()=>{
+  soundOn = !soundOn;
+  soundBtn.textContent = soundOn ? '🔊' : '🔇';
+  if(soundOn) beep(700,0.08);
+});
+
+/* ============================================================
+   وضعیت برنامه
+============================================================ */
+const DEFAULTS = { add:[3,2], sub:[5,2], mul:[3,2], div:[8,2] };
+const LIMITS = {
+  add:{ a:[0,10], b:[0,10] },
+  sub:{ a:[1,10], b:[1,10] },
+  mul:{ a:[1,6],  b:[1,5]  },
+  div:{ a:[2,20], b:[2,5]  }
+};
+const LABELS = {
+  add:['تعداد سیب‌های گروه اول','تعداد سیب‌های گروه دوم'],
+  sub:['چند سیب داریم؟','کلاغ چند تا می‌خوره؟'],
+  mul:['چند سیب در هر بشقاب؟','چند بشقاب؟'],
+  div:['چند سیب داریم؟','بین چند بشقاب تقسیم شود؟']
+};
+const HINTS = {
+  add:'دکمه «محاسبه» رو بزن تا سیب‌ها با هم جمع بشن!',
+  sub:'کلاغ گرسنه منتظره... دکمه «محاسبه» رو بزن!',
+  mul:'بشقاب‌ها رو کپی می‌کنیم! «محاسبه» رو بزن.',
+  div:'سیب‌ها رو بین بشقاب‌ها تقسیم می‌کنیم.'
+};
+const SYM = { add:'+', sub:'−', mul:'×', div:'÷' };
+
+let state = { op:'add', a:3, b:2, busy:false, done:false };
+
+function answerOf(){
+  switch(state.op){
+    case 'add': return state.a + state.b;
+    case 'sub': return state.a - state.b;
+    case 'mul': return state.a * state.b;
+    case 'div': return Math.floor(state.a / state.b);
+  }
+}
+
+/* ============================================================
+   معادله
+============================================================ */
+function eqHTML(){
+  const ans = state.done
+    ? `<span class="res">${fa(answerOf())}</span>`
+    : `<span class="res">؟</span>`;
+  return `<span class="num">${fa(state.a)}</span><span class="op">${SYM[state.op]}</span>`+
+         `<span class="num">${fa(state.b)}</span><span class="op">=</span>${ans}`;
+}
+
+/* ============================================================
+   ساخت سیب‌ها
+============================================================ */
+function fitApples(container, n){
+  let size = 30;
+  if(n > 4)  size = 26;
+  if(n > 8)  size = 22;
+  if(n > 12) size = 19;
+  if(n > 16) size = 16;
+  if(n > 20) size = 14;
+  container.querySelectorAll('.apple').forEach(a => a.style.fontSize = size + 'px');
+}
+function fillApples(container, n){
+  container.innerHTML = '';
+  for(let i=0;i<n;i++){
+    const a = document.createElement('span');
+    a.className = 'apple';
+    a.textContent = '🍎';
+    container.appendChild(a);
+  }
+  fitApples(container, n);
+}
+
+/* ============================================================
+   پرواز سیب (کپی شناور)
+============================================================ */
+function flyApple(fromEl, toEl, opts = {}){
+  const { duration = 420, arc = 80, delay = 0 } = opts;
+  const from = fromEl.getBoundingClientRect();
+  const to   = toEl.getBoundingClientRect();
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const node = document.createElement('div');
+      node.className = 'flyer';
+      node.textContent = '🍎';
+      const size = Math.max(from.width, 18);
+      node.style.fontSize = size + 'px';
+      node.style.width = size + 'px';
+      node.style.height = size + 'px';
+      node.style.left = (from.left + from.width / 2) + 'px';
+      node.style.top  = (from.top  + from.height / 2) + 'px';
+      document.body.appendChild(node);
+
+      const dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+      const dy = (to.top  + to.height / 2) - (from.top  + from.height / 2);
+
+      const anim = node.animate([
+        { transform:'translate(-50%,-50%) scale(1) rotate(0deg)' },
+        { transform:`translate(calc(-50% + ${dx/2}px), calc(-50% + ${dy/2 - arc}px)) scale(1.25) rotate(180deg)` },
+        { transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(1) rotate(360deg)` }
+      ], { duration, easing:'cubic-bezier(.35,.05,.35,1)', fill:'forwards' });
+
+      anim.onfinish = () => { node.remove(); resolve(); };
+    }, delay);
+  });
+}
+
+/* ============================================================
+   شمارش
+============================================================ */
+async function countApples(els){
+  if(!els.length){
+    hintEl.textContent = 'هیچ سیبی نموند!';
+    await sleep(500);
+    return;
+  }
+  for(let i=0;i<els.length;i++){
+    els[i].classList.add('counted');
+    hintEl.textContent = 'بشمار: ' + fa(i + 1);
+    beep(600 + i * 18, 0.05);
+    await sleep(140);
+    els[i].classList.remove('counted');
+  }
+  hintEl.textContent = `آفرین! شد ${fa(els.length)} تا 🎉`;
+}
+
+/* ============================================================
+   ساخت صحنه
+============================================================ */
+function buildScene(){
+  stage.innerHTML = '';
+
+  if(state.op === 'add'){
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+      <div class="group"><div class="plate" id="plateA"></div><div class="cap">گروه اول</div></div>
+      <div class="group"><div class="plate" id="plateB"></div><div class="cap">گروه دوم</div></div>`;
+    stage.appendChild(row);
+    fillApples(row.querySelector('#plateA'), state.a);
+    fillApples(row.querySelector('#plateB'), state.b);
+  }
+  else if(state.op === 'sub'){
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `<div class="group"><div class="plate" id="plateA"></div><div class="cap">سیب‌ها</div></div>`;
+    stage.appendChild(row);
+    fillApples(row.querySelector('#plateA'), state.a);
+
+    const crow = document.createElement('div');
+    crow.className = 'crow';
+    crow.id = 'crow';
+    // تصویر کلاغ را از مسیر images/crow.png بارگذاری می‌کنیم.
+    const crowImage = document.createElement('img');
+    crowImage.className = 'crow-inner';
+    crowImage.src = 'images/crow.png';
+    crowImage.alt = 'کلاغ گرسنه';
+    crow.appendChild(crowImage);
+    stage.appendChild(crow);
+  }
+  else if(state.op === 'mul'){
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.id = 'platesRow';
+    row.innerHTML = `<div class="group"><div class="plate"></div><div class="cap">بشقاب ۱</div></div>`;
+    stage.appendChild(row);
+    fillApples(row.querySelector('.plate'), state.a);
+  }
+  else {
+    const row = document.createElement('div');
+    row.className = 'row';
+    let html = `<div class="group"><div class="basket" id="basket"></div><div class="cap">سیب‌ها</div></div>`;
+    for(let i=0;i<state.b;i++){
+      html += `<div class="group"><div class="plate" data-plate="${i}"></div><div class="cap">بشقاب ${fa(i+1)}</div></div>`;
+    }
+    row.innerHTML = html;
+    stage.appendChild(row);
+    fillApples(row.querySelector('#basket'), state.a);
+  }
+}
+
+/* ============================================================
+   کنترل‌ها
+============================================================ */
+function buildControls(){
+  controlsEl.innerHTML = '';
+  ['a','b'].forEach((key, idx) => {
+    const box = document.createElement('div');
+    box.className = 'stepper-box';
+    box.innerHTML = `
+      <div class="stepper-label">${LABELS[state.op][idx]}</div>
+      <div class="stepper">
+        <button class="step-btn" data-key="${key}" data-dir="-1">−</button>
+        <div class="step-val">${fa(state[key])}</div>
+        <button class="step-btn" data-key="${key}" data-dir="1">+</button>
+      </div>`;
+    controlsEl.appendChild(box);
+  });
+  controlsEl.querySelectorAll('.step-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(state.busy) return;
+      changeVal(btn.dataset.key, +btn.dataset.dir);
+      beep(720, 0.04);
+    });
+  });
+}
+
+function changeVal(key, dir){
+  const lim = LIMITS[state.op][key];
+  let v = state[key] + dir;
+  if(v < lim[0]) v = lim[0];
+  if(v > lim[1]) v = lim[1];
+
+  // محدودیت‌های منطقی
+  if((state.op === 'sub' || state.op === 'div') && key === 'b' && v > state.a) v = state.a;
+
+  state[key] = v;
+
+  if((state.op === 'sub' || state.op === 'div') && state.b > state.a){
+    state.b = state.a;
+  }
+
+  render();
+}
+
+/* ============================================================
+   رندر کلی
+============================================================ */
+function render(){
+  state.done = false;
+  equationEl.innerHTML = eqHTML();
+  equationEl.classList.remove('solved');
+  hintEl.textContent = HINTS[state.op];
+  calcBtn.textContent = 'محاسبه کن';
+  buildControls();
+  buildScene();
+}
+
+/* ============================================================
+   انیمیشن‌ها
+============================================================ */
+async function animateAdd(){
+  const plateA = stage.querySelector('#plateA');
+  const plateB = stage.querySelector('#plateB');
+  const srcs = [...plateB.querySelectorAll('.apple')];
+
+  if(srcs.length){
+    // سیب‌های مخفی مقصد را از قبل می‌سازیم تا جایشان مشخص شود
+    const newEls = [];
+    for(let i=0;i<srcs.length;i++){
+      const a = document.createElement('span');
+      a.className = 'apple';
+      a.textContent = '🍎';
+      a.style.opacity = '0';
+      plateA.appendChild(a);
+      newEls.push(a);
+    }
+    fitApples(plateA, state.a + state.b);
+    await sleep(60);
+
+    hintEl.textContent = 'سیب‌ها می‌رن توی یه ظرف!';
+    for(let i=0;i<srcs.length;i++){
+      srcs[i].style.visibility = 'hidden';
+      await flyApple(srcs[i], newEls[i], { duration:430, arc:90 });
+      newEls[i].style.opacity = '1';
+      newEls[i].classList.add('pop-in');
+      beep(520 + i * 30, 0.06);
+      await sleep(70);
+    }
+
+    const gB = plateB.closest('.group');
+    gB.style.opacity = '0';
+    gB.style.transform = 'scale(.8)';
+    await sleep(320);
+  }
+
+  const all = [...plateA.querySelectorAll('.apple')];
+  await countApples(all);
+  finish(answerOf());
+}
+
+async function moveCrowTo(crow, targetEl, dur = 380){
+  const sr = stage.getBoundingClientRect();
+  const tr = targetEl.getBoundingClientRect();
+  const x = tr.left - sr.left + tr.width / 2 - 32;
+  const y = tr.top  - sr.top  + tr.height / 2 - 32;
+  crow.style.transitionDuration = dur + 'ms';
+  crow.style.transform = `translate(${x}px, ${y}px)`;
+  await sleep(dur + 40);
+}
+
+async function animateSub(){
+  const plateA = stage.querySelector('#plateA');
+  const crow   = stage.querySelector('#crow');
+  const inner  = crow.querySelector('.crow-inner');
+  const apples = [...plateA.querySelectorAll('.apple')];
+
+  hintEl.textContent = 'کلاغ گرسنه اومد!';
+  await sleep(350);
+  if(apples.length) await moveCrowTo(crow, apples[0], 620);
+
+  const n = Math.min(state.b, apples.length);
+  for(let i=0;i<n;i++){
+    const target = apples[apples.length - 1 - i];
+    if(!target) break;
+    await moveCrowTo(crow, target, 280);
+    target.classList.add('eaten');
+    beep(250, 0.09, 'square', 0.10);
+    await sleep(300);
+    target.remove();
+    inner.classList.add('gulp');
+    setTimeout(()=> inner.classList.remove('gulp'), 330);
+    hintEl.textContent = `خورد! ${fa(i + 1)} تا`;
+    await sleep(150);
+  }
+
+  await sleep(220);
+  hintEl.textContent = 'کلاغ سیر شد و رفت! ✈️';
+  crow.style.transitionDuration = '700ms';
+  crow.style.transform = 'translate(-220px,-180px)';
+  await sleep(760);
+
+  const rest = [...plateA.querySelectorAll('.apple')];
+  await countApples(rest);
+  finish(answerOf());
+}
+
+async function animateMul(){
+  const row = stage.querySelector('#platesRow');
+
+  for(let i=1;i<state.b;i++){
+    const g = document.createElement('div');
+    g.className = 'group pop-in';
+    g.innerHTML = `<div class="plate"></div><div class="cap">بشقاب ${fa(i+1)}</div>`;
+    row.appendChild(g);
+
+    const plate = g.querySelector('.plate');
+    fillApples(plate, state.a);
+    const els = [...plate.querySelectorAll('.apple')];
+    els.forEach(a => a.style.opacity = '0');
+
+    beep(760, 0.08);
+    hintEl.textContent = `بشقاب ${fa(i + 1)} کپی شد!`;
+    await sleep(280);
+
+    for(const a of els){
+      a.style.opacity = '1';
+      a.classList.add('pop-in');
+      beep(560, 0.05);
+      await sleep(80);
+    }
+    await sleep(140);
+  }
+
+  const all = [...row.querySelectorAll('.apple')];
+  hintEl.textContent = 'حالا همه رو با هم بشمار!';
+  await sleep(350);
+  await countApples(all);
+  finish(answerOf());
+}
+
+async function animateDiv(){
+  const basket = stage.querySelector('#basket');
+  const plates = [...stage.querySelectorAll('.plate[data-plate]')];
+  const apples = [...basket.querySelectorAll('.apple')];
+  const b = state.b;
+  const q = Math.floor(state.a / b);
+  const r = state.a % b;
+
+  // سیب‌های مخفی مقصد
+  const targets = plates.map(p => {
+    const arr = [];
+    for(let i=0;i<q;i++){
+      const a = document.createElement('span');
+      a.className = 'apple';
+      a.textContent = '🍎';
+      a.style.opacity = '0';
+      p.appendChild(a);
+      arr.push(a);
+    }
+    fitApples(p, q);
+    return arr;
+  });
+  await sleep(60);
+
+  const total = q * b;
+  hintEl.textContent = 'یکی یکی تقسیم می‌کنیم...';
+  for(let k=0;k<total;k++){
+    const pIndex = k % b;
+    const tIndex = Math.floor(k / b);
+    const src = apples[k];
+    const tgt = targets[pIndex][tIndex];
+    if(!src || !tgt) break;
+    src.style.visibility = 'hidden';
+    await flyApple(src, tgt, { duration:380, arc:70 });
+    tgt.style.opacity = '1';
+    tgt.classList.add('pop-in');
+    beep(520 + pIndex * 60, 0.05);
+    await sleep(60);
+  }
+
+  apples.slice(0, total).forEach(a => a.remove());
+  await sleep(250);
+
+  hintEl.textContent = `هر بشقاب ${fa(q)} سیب!` + (r > 0 ? ` و ${fa(r)} سیب باقی ماند 🍎` : ' 🎉');
+  await sleep(900);
+  finish(answerOf());
+}
+
+/* ============================================================
+   پایان
+============================================================ */
+function finish(ans){
+  state.done = true;
+  equationEl.innerHTML = eqHTML();
+  equationEl.classList.add('solved');
+  calcBtn.textContent = 'دوباره انجام بده';
+  victorySound();
+  confetti();
+}
+
+function confetti(){
+  const emojis = ['🎉','✨','⭐️','🍎','🍏','🌟'];
+  for(let i=0;i<16;i++){
+    const s = document.createElement('span');
+    s.className = 'confetti';
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    s.style.left = (Math.random() * 100) + 'vw';
+    s.style.fontSize = (16 + Math.random() * 20) + 'px';
+    document.body.appendChild(s);
+    const anim = s.animate([
+      { transform:'translateY(0) rotate(0deg)', opacity:1 },
+      { transform:`translateY(112vh) rotate(${360 + Math.random()*540}deg)`, opacity:.85 }
+    ], { duration: 2200 + Math.random() * 1400, easing:'linear' });
+    anim.onfinish = () => s.remove();
+  }
+}
+
+/* ============================================================
+   رویدادها
+============================================================ */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    if(state.busy) return;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    state.op = tab.dataset.op;
+    const d = DEFAULTS[state.op];
+    state.a = d[0];
+    state.b = d[1];
+    render();
+    beep(680, 0.06);
+  });
+});
+
+calcBtn.addEventListener('click', async () => {
+  if(state.busy) return;
+  if(state.done){ render(); return; }
+
+  state.busy = true;
+  calcBtn.disabled = true;
+  resetBtn.disabled = true;
+  document.querySelectorAll('.tab').forEach(t => t.style.pointerEvents = 'none');
+
+  try{
+    if(state.op === 'add')      await animateAdd();
+    else if(state.op === 'sub') await animateSub();
+    else if(state.op === 'mul') await animateMul();
+    else                        await animateDiv();
+  }catch(err){ console.error(err); }
+
+  state.busy = false;
+  calcBtn.disabled = false;
+  resetBtn.disabled = false;
+  document.querySelectorAll('.tab').forEach(t => t.style.pointerEvents = '');
+});
+
+resetBtn.addEventListener('click', () => {
+  if(state.busy) return;
+  render();
+  beep(500, 0.06);
+});
+
+/* شروع */
+render();
+</script>
+</body>
+</html>
